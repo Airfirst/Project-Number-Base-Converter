@@ -1,14 +1,25 @@
 # Project-Number-Base-Converter
 
-Stage 2/4: Convert to decimal
 Description
 At this point, the user needs to restart the program each time after converting just one number, which is very inconvenient. Let's fix that and make your program prompt the user for more numbers until the user is ready to quit.
 
 Also, we will add the reverse conversion: from binary, octal, and hexadecimal systems to decimal. Converting from octal, hexadecimal, or any other system to decimal works almost the same way as with binary numbers, only the base is different. See for yourself:
 
-17268=1∗512+7∗64+2∗8+6∗1=98210
+1726_8 = 1*512 + 7*64 + 2*8 + 6*1 = 982_{10}1726 
+8
+​
+ =1∗512+7∗64+2∗8+6∗1=982 
+10
+​
+ 
 
-A3C16=10∗256+3∗16+12∗1=262010
+A3C_{16} = 10*256 + 3*16 + 12*1 = 2620_{10}A3C 
+16
+​
+ =10∗256+3∗16+12∗1=2620 
+10
+​
+ 
 
 Objectives
 Your program should output the prompt Do you want to convert /from decimal or /to decimal? (To quit type /exit) to prompt the user for their next move. The possible commands are /from, /to, and /exit.
