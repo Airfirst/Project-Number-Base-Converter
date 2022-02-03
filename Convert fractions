@@ -56,3 +56,704 @@ Conversion result: 38012.05550
 Enter number in base 21 to convert to base 10 (To go back type /back) > /back
 
 Enter two numbers in format: {source base} {target base} (To quit type /exit) > /exit
+
+
+
+
+
+
+
+
+
+package converter
+import java.math.BigInteger
+import java.math.BigDecimal
+import java.math.RoundingMode
+
+fun main() {
+    do {
+        print("Enter two numbers in format: {source base} {target base} (To quit type /exit) > ")
+        val input = readLine()!! //  /exit
+        if (input != "/exit") {
+            val k = input.split(" ")
+            val x = k[0].toBigInteger()   //  {source base}
+            val y = k[1].toBigInteger()  //  {target base}
+            do {
+                print("Enter number in base $x to convert to base ${y.toInt()} (To go back type /back) > ")
+                val string = readLine()!!.uppercase()  // source number
+                val str: String
+                val strDec: String
+                if (string != "/BACK") {
+                    if (string.contains(".")) {
+                        val s = string.split(".")
+                        str = s[0]
+                        strDec = s[1]
+
+                        var a = 0.toBigInteger()
+                        var num = 1.toBigInteger()
+                        var sum: BigInteger
+                        var b = 0.toBigDecimal()
+
+                        if (x.toInt() in 2..10) {                              // 2..10 -> 10
+                            var m = str.toBigInteger()
+                            while (m > 0.toBigInteger()) {                      // 000.
+                                val mod = m % 10.toBigInteger()
+                                m /= 10.toBigInteger()
+                                sum = mod * num
+                                a += sum
+                                num *= x
+                            }
+                            if (string.contains(".")) {                        // 2..10 -> 10    // .0000
+                                var num4 = 1.toBigDecimal().setScale(5, RoundingMode.CEILING) / x.toBigDecimal()
+                                var sum4: BigDecimal
+                                val list2 = mutableListOf<String>()
+                                for (i in 0 until strDec.length) {
+                                    list2.add(strDec[i].toString())
+                                }
+                                for (i in 0 until list2.size) {
+                                    sum4 = list2[i].toBigDecimal() * num4
+                                    b += sum4
+                                    num4 *= 1.toBigDecimal().setScale(5, RoundingMode.CEILING) / x.toBigDecimal()
+                                }
+                            }
+                        }
+                        if (x.toInt() in 11..36) {                          // 11..36 -> 10
+                            val list = mutableListOf<String>()
+                            for (i in 0 until str.length) {                 // 000.  ->   10
+                                list.add(str[i].toString())
+                                if (list.indexOf("A") >= 0) {
+                                    val aa = list.indexOf("A")
+                                    list.add(aa, "10")
+                                    list.removeAt(aa + 1)
+                                }
+                                if (list.indexOf("B") >= 0) {
+                                    val bb = list.indexOf("B")
+                                    list.add(bb, "11")
+                                    list.removeAt(bb + 1)
+                                }
+                                if (list.indexOf("C") >= 0) {
+                                    val cc = list.indexOf("C")
+                                    list.add(cc, "12")
+                                    list.removeAt(cc + 1)
+                                }
+                                if (list.indexOf("D") >= 0) {
+                                    val dd = list.indexOf("D")
+                                    list.add(dd, "13")
+                                    list.removeAt(dd + 1)
+                                }
+                                if (list.indexOf("E") >= 0) {
+                                    val ee = list.indexOf("E")
+                                    list.add(ee, "14")
+                                    list.removeAt(ee + 1)
+                                }
+                                if (list.indexOf("F") >= 0) {
+                                    val ff = list.indexOf("F")
+                                    list.add(ff, "15")
+                                    list.removeAt(ff + 1)
+                                }
+                                if (list.indexOf("G") >= 0) {
+                                    val gg = list.indexOf("G")
+                                    list.add(gg, "16")
+                                    list.removeAt(gg + 1)
+                                }
+                                if (list.indexOf("H") >= 0) {
+                                    val hh = list.indexOf("H")
+                                    list.add(hh, "17")
+                                    list.removeAt(hh + 1)
+                                }
+                                if (list.indexOf("I") >= 0) {
+                                    val ii = list.indexOf("I")
+                                    list.add(ii, "18")
+                                    list.removeAt(ii + 1)
+                                }
+                                if (list.indexOf("J") >= 0) {
+                                    val jj = list.indexOf("J")
+                                    list.add(jj, "19")
+                                    list.removeAt(jj + 1)
+                                }
+                                if (list.indexOf("K") >= 0) {
+                                    val kk = list.indexOf("K")
+                                    list.add(kk, "20")
+                                    list.removeAt(kk + 1)
+                                }
+                                if (list.indexOf("L") >= 0) {
+                                    val ll = list.indexOf("L")
+                                    list.add(ll, "21")
+                                    list.removeAt(ll + 1)
+                                }
+                                if (list.indexOf("M") >= 0) {
+                                    val mm = list.indexOf("M")
+                                    list.add(mm, "22")
+                                    list.removeAt(mm + 1)
+                                }
+                                if (list.indexOf("N") >= 0) {
+                                    val nn = list.indexOf("N")
+                                    list.add(nn, "23")
+                                    list.removeAt(nn + 1)
+                                }
+                                if (list.indexOf("O") >= 0) {
+                                    val oo = list.indexOf("O")
+                                    list.add(oo, "24")
+                                    list.removeAt(oo + 1)
+                                }
+                                if (list.indexOf("P") >= 0) {
+                                    val pp = list.indexOf("P")
+                                    list.add(pp, "25")
+                                    list.removeAt(pp + 1)
+                                }
+                                if (list.indexOf("Q") >= 0) {
+                                    val qq = list.indexOf("Q")
+                                    list.add(qq, "26")
+                                    list.removeAt(qq + 1)
+                                }
+                                if (list.indexOf("R") >= 0) {
+                                    val rr = list.indexOf("R")
+                                    list.add(rr, "27")
+                                    list.removeAt(rr + 1)
+                                }
+                                if (list.indexOf("S") >= 0) {
+                                    val ss = list.indexOf("S")
+                                    list.add(ss, "28")
+                                    list.removeAt(ss + 1)
+                                }
+                                if (list.indexOf("T") >= 0) {
+                                    val tt = list.indexOf("T")
+                                    list.add(tt, "29")
+                                    list.removeAt(tt + 1)
+                                }
+                                if (list.indexOf("U") >= 0) {
+                                    val uu = list.indexOf("U")
+                                    list.add(uu, "30")
+                                    list.removeAt(uu + 1)
+                                }
+                                if (list.indexOf("V") >= 0) {
+                                    val vv = list.indexOf("V")
+                                    list.add(vv, "31")
+                                    list.removeAt(vv + 1)
+                                }
+                                if (list.indexOf("W") >= 0) {
+                                    val ww = list.indexOf("W")
+                                    list.add(ww, "32")
+                                    list.removeAt(ww + 1)
+                                }
+                                if (list.indexOf("X") >= 0) {
+                                    val xx = list.indexOf("X")
+                                    list.add(xx, "33")
+                                    list.removeAt(xx + 1)
+                                }
+                                if (list.indexOf("Y") >= 0) {
+                                    val yy = list.indexOf("Y")
+                                    list.add(yy, "34")
+                                    list.removeAt(yy + 1)
+                                }
+                                if (list.indexOf("Z") >= 0) {
+                                    val zz = list.indexOf("Z")
+                                    list.add(zz, "35")
+                                    list.removeAt(zz + 1)
+                                }
+                            }
+                            for (i in list.size - 1 downTo 0) {                                      // 000.
+                                sum = list[i].toBigInteger() * num
+                                a += sum
+                                num *= x
+                            }
+
+                            if (string.contains(".")) {
+                                var num5 = 1.toBigDecimal().setScale(10, RoundingMode.CEILING) / x.toBigDecimal()       // .000
+                                var sum5: BigDecimal
+                                val list3 = mutableListOf<String>()
+                                for (i in 0 until strDec.length) {                                              // 35 -> 10
+                                    list3.add(strDec[i].toString())
+                                    if (list3.indexOf("A") >= 0) {
+                                        val aa = list3.indexOf("A")
+                                        list3.add(aa, "10")
+                                        list3.removeAt(aa + 1)
+                                    }
+                                    if (list3.indexOf("B") >= 0) {
+                                        val bb = list3.indexOf("B")
+                                        list3.add(bb, "11")
+                                        list3.removeAt(bb + 1)
+                                    }
+                                    if (list3.indexOf("C") >= 0) {
+                                        val cc = list3.indexOf("C")
+                                        list3.add(cc, "12")
+                                        list3.removeAt(cc + 1)
+                                    }
+                                    if (list3.indexOf("D") >= 0) {
+                                        val dd = list3.indexOf("D")
+                                        list3.add(dd, "13")
+                                        list3.removeAt(dd + 1)
+                                    }
+                                    if (list3.indexOf("E") >= 0) {
+                                        val ee = list3.indexOf("E")
+                                        list3.add(ee, "14")
+                                        list3.removeAt(ee + 1)
+                                    }
+                                    if (list3.indexOf("F") >= 0) {
+                                        val ff = list3.indexOf("F")
+                                        list3.add(ff, "15")
+                                        list3.removeAt(ff + 1)
+                                    }
+                                    if (list3.indexOf("G") >= 0) {
+                                        val gg = list3.indexOf("G")
+                                        list3.add(gg, "16")
+                                        list3.removeAt(gg + 1)
+                                    }
+                                    if (list3.indexOf("H") >= 0) {
+                                        val hh = list3.indexOf("H")
+                                        list3.add(hh, "17")
+                                        list3.removeAt(hh + 1)
+                                    }
+                                    if (list3.indexOf("I") >= 0) {
+                                        val ii = list3.indexOf("I")
+                                        list3.add(ii, "18")
+                                        list3.removeAt(ii + 1)
+                                    }
+                                    if (list3.indexOf("J") >= 0) {
+                                        val jj = list3.indexOf("J")
+                                        list3.add(jj, "19")
+                                        list3.removeAt(jj + 1)
+                                    }
+                                    if (list3.indexOf("K") >= 0) {
+                                        val kk = list3.indexOf("K")
+                                        list3.add(kk, "20")
+                                        list3.removeAt(kk + 1)
+                                    }
+                                    if (list3.indexOf("L") >= 0) {
+                                        val ll = list3.indexOf("L")
+                                        list3.add(ll, "21")
+                                        list3.removeAt(ll + 1)
+                                    }
+                                    if (list3.indexOf("M") >= 0) {
+                                        val mm = list3.indexOf("M")
+                                        list3.add(mm, "22")
+                                        list3.removeAt(mm + 1)
+                                    }
+                                    if (list3.indexOf("N") >= 0) {
+                                        val nn = list3.indexOf("N")
+                                        list3.add(nn, "23")
+                                        list3.removeAt(nn + 1)
+                                    }
+                                    if (list3.indexOf("O") >= 0) {
+                                        val oo = list3.indexOf("O")
+                                        list3.add(oo, "24")
+                                        list3.removeAt(oo + 1)
+                                    }
+                                    if (list3.indexOf("P") >= 0) {
+                                        val pp = list3.indexOf("P")
+                                        list3.add(pp, "25")
+                                        list3.removeAt(pp + 1)
+                                    }
+                                    if (list3.indexOf("Q") >= 0) {
+                                        val qq = list3.indexOf("Q")
+                                        list3.add(qq, "26")
+                                        list3.removeAt(qq + 1)
+                                    }
+                                    if (list3.indexOf("R") >= 0) {
+                                        val rr = list3.indexOf("R")
+                                        list3.add(rr, "27")
+                                        list3.removeAt(rr + 1)
+                                    }
+                                    if (list3.indexOf("S") >= 0) {
+                                        val ss = list3.indexOf("S")
+                                        list3.add(ss, "28")
+                                        list3.removeAt(ss + 1)
+                                    }
+                                    if (list3.indexOf("T") >= 0) {
+                                        val tt = list3.indexOf("T")
+                                        list3.add(tt, "29")
+                                        list3.removeAt(tt + 1)
+                                    }
+                                    if (list3.indexOf("U") >= 0) {
+                                        val uu = list3.indexOf("U")
+                                        list3.add(uu, "30")
+                                        list3.removeAt(uu + 1)
+                                    }
+                                    if (list3.indexOf("V") >= 0) {
+                                        val vv = list3.indexOf("V")
+                                        list3.add(vv, "31")
+                                        list3.removeAt(vv + 1)
+                                    }
+                                    if (list3.indexOf("W") >= 0) {
+                                        val ww = list3.indexOf("W")
+                                        list3.add(ww, "32")
+                                        list3.removeAt(ww + 1)
+                                    }
+                                    if (list3.indexOf("X") >= 0) {
+                                        val xx = list3.indexOf("X")
+                                        list3.add(xx, "33")
+                                        list3.removeAt(xx + 1)
+                                    }
+                                    if (list3.indexOf("Y") >= 0) {
+                                        val yy = list3.indexOf("Y")
+                                        list3.add(yy, "34")
+                                        list3.removeAt(yy + 1)
+                                    }
+                                    if (list3.indexOf("Z") >= 0) {
+                                        val zz = list3.indexOf("Z")
+                                        list3.add(zz, "35")
+                                        list3.removeAt(zz + 1)
+                                    }
+
+                                }
+                                for (i in 0 until list3.size) {                                             // .000
+                                    sum5 = list3[i].toBigDecimal() * num5
+                                    b += sum5
+                                    num5 *= 1.toBigDecimal().setScale(5, RoundingMode.CEILING) / x.toBigDecimal()
+
+                                }
+
+                            }
+                        }
+                        ////////////////////////////////////////////////////////////////////////
+                        var result1 = ""
+                        var result2 = ""
+                        var result3 = ""
+                        var result4 = ""
+                        if (y.toInt() in 2..10) {                                                   // 10 -> 2..10
+                            while (a > 0.toBigInteger()) {
+                                val num3: String = (a % y).toString()
+                                result1 = num3 + result1                                              // 000.
+                                a /= y
+                            }
+                            var n = b
+                            var ss = 5
+                            if (b != 0.toBigDecimal()) {
+                                while (ss > 0) {                                                           // 10 -> 2..10
+                                    val r = (n.setScale(5, RoundingMode.CEILING) * y.toBigDecimal()).toString()       // .000
+                                    result2 += r.substringBefore(".")
+                                    n = ("0." + r.substringAfter(".")).toBigDecimal().setScale(5, RoundingMode.CEILING)
+                                    ss--
+                                }
+                            }
+                            if (result1.isNotEmpty()) {
+                                println("Conversion result: " + "$result1" + ".$result2")
+                                println(" ")
+                            }
+                            else {
+                                println("Conversion result: 0.$result2")
+                                println(" ")
+                            }
+                        }
+
+                        if (y.toInt() in 11..36) {                                                  // 10 -> 35
+                            while (a > 0.toBigInteger()) {                                          // 000.
+                                var num2 = (a % y).toString()
+                                if (num2 == "10") { num2 = "A" }
+                                else if (num2 == "11") { num2 = "B" }
+                                else if (num2 == "12") { num2 = "C" }
+                                else if (num2 == "13") { num2 = "D" }
+                                else if (num2 == "14") { num2 = "E" }
+                                else if (num2 == "15") { num2 = "F" }
+                                else if (num2 == "16") { num2 = "G" }
+                                else if (num2 == "17") { num2 = "H" }
+                                else if (num2 == "18") { num2 = "I" }
+                                else if (num2 == "19") { num2 = "J" }
+                                else if (num2 == "20") { num2 = "K" }
+                                else if (num2 == "21") { num2 = "L" }
+                                else if (num2 == "22") { num2 = "M" }
+                                else if (num2 == "23") { num2 = "N" }
+                                else if (num2 == "24") { num2 = "O" }
+                                else if (num2 == "25") { num2 = "P" }
+                                else if (num2 == "26") { num2 = "Q" }
+                                else if (num2 == "27") { num2 = "R" }
+                                else if (num2 == "28") { num2 = "S" }
+                                else if (num2 == "29") { num2 = "T" }
+                                else if (num2 == "30") { num2 = "U" }
+                                else if (num2 == "31") { num2 = "V" }
+                                else if (num2 == "32") { num2 = "W" }
+                                else if (num2 == "33") { num2 = "X" }
+                                else if (num2 == "34") { num2 = "Y" }
+                                else if (num2 == "35") { num2 = "Z" }
+                                else (a % y).toString()
+                                result3 = num2 + result3
+                                a /= y
+                            }
+
+                            var n = b
+                            if (n > 0.toBigDecimal()) {
+                                var sz = 5
+                                while (sz > 0) {                                                     // 10 -> 35       // .000
+                                    val num0 = (n.setScale(5, RoundingMode.CEILING) * y.toBigDecimal()).toString()
+                                    val num2 = num0.split(".").toMutableList()
+                                    if (num2[0] == "10") { num2[0] = "A" }
+                                    else if (num2[0] == "11") { num2[0] = "B" }
+                                    else if (num2[0] == "12") { num2[0] = "C" }
+                                    else if (num2[0] == "13") { num2[0] = "D" }
+                                    else if (num2[0] == "14") { num2[0] = "E" }
+                                    else if (num2[0] == "15") { num2[0] = "F" }
+                                    else if (num2[0] == "16") { num2[0] = "G" }
+                                    else if (num2[0] == "17") { num2[0] = "H" }
+                                    else if (num2[0] == "18") { num2[0] = "I" }
+                                    else if (num2[0] == "19") { num2[0] = "J" }
+                                    else if (num2[0] == "20") { num2[0] = "K" }
+                                    else if (num2[0] == "21") { num2[0] = "L" }
+                                    else if (num2[0] == "22") { num2[0] = "M" }
+                                    else if (num2[0] == "23") { num2[0] = "N" }
+                                    else if (num2[0] == "24") { num2[0] = "O" }
+                                    else if (num2[0] == "25") { num2[0] = "P" }
+                                    else if (num2[0] == "26") { num2[0] = "Q" }
+                                    else if (num2[0] == "27") { num2[0] = "R" }
+                                    else if (num2[0] == "28") { num2[0] = "S" }
+                                    else if (num2[0] == "29") { num2[0] = "T" }
+                                    else if (num2[0] == "30") { num2[0] = "U" }
+                                    else if (num2[0] == "31") { num2[0] = "V" }
+                                    else if (num2[0] == "32") { num2[0] = "W" }
+                                    else if (num2[0] == "33") { num2[0] = "X" }
+                                    else if (num2[0] == "34") { num2[0] = "Y" }
+                                    else if (num2[0] == "35") { num2[0] = "Z" }
+
+                                    else if (num2[1] == "10") { num2[1] = "A" }
+                                    else if (num2[1] == "11") { num2[1] = "B" }
+                                    else if (num2[1] == "12") { num2[1] = "C" }
+                                    else if (num2[1] == "13") { num2[1] = "D" }
+                                    else if (num2[1] == "14") { num2[1] = "E" }
+                                    else if (num2[1] == "15") { num2[1] = "F" }
+                                    else if (num2[1] == "16") { num2[1] = "G" }
+                                    else if (num2[1] == "17") { num2[1] = "H" }
+                                    else if (num2[1] == "18") { num2[1] = "I" }
+                                    else if (num2[1] == "19") { num2[1] = "J" }
+                                    else if (num2[1] == "20") { num2[1] = "K" }
+                                    else if (num2[1] == "21") { num2[1] = "L" }
+                                    else if (num2[1] == "22") { num2[1] = "M" }
+                                    else if (num2[1] == "23") { num2[1] = "N" }
+                                    else if (num2[1] == "24") { num2[1] = "O" }
+                                    else if (num2[1] == "25") { num2[1] = "P" }
+                                    else if (num2[1] == "26") { num2[1] = "Q" }
+                                    else if (num2[1] == "27") { num2[1] = "R" }
+                                    else if (num2[1] == "28") { num2[1] = "S" }
+                                    else if (num2[1] == "29") { num2[1] = "T" }
+                                    else if (num2[1] == "30") { num2[1] = "U" }
+                                    else if (num2[1] == "31") { num2[1] = "V" }
+                                    else if (num2[1] == "32") { num2[1] = "W" }
+                                    else if (num2[1] == "33") { num2[1] = "X" }
+                                    else if (num2[1] == "34") { num2[1] = "Y" }
+                                    else if (num2[1] == "35") { num2[1] = "Z" }
+                                    else (n * y.toBigDecimal().setScale(5, RoundingMode.CEILING)).toString().split(".")
+                                    result4 += num2[0]
+                                    n = ("0." + num2[1]).toBigDecimal().setScale(5, RoundingMode.CEILING)
+                                    sz--
+                                }
+                            } else { result4 = "00000"}
+                            if (result3.isNotEmpty()) {
+                                println("Conversion result: " + "$result3" + ".$result4")
+                                println(" ")
+                            }
+                            else {
+                                println("Conversion result: 0.$result4")
+                                println(" ")
+                            }
+                        }
+                    } else {
+                        var a = 0.toBigInteger()
+                        var num = 1.toBigInteger()
+                        var sum: BigInteger
+                        if (x.toInt() in 2..10) {
+                            var m = string.toBigInteger()
+                            while (m > 0.toBigInteger()) {
+                                val mod = m % 10.toBigInteger()
+                                m /= 10.toBigInteger()
+                                sum = mod * num
+                                a += sum
+                                num *= x
+                            }
+                        }
+                        if (x.toInt() in 11..36) {
+                            val list = mutableListOf<String>()
+                            for (i in 0 until string.length) {
+                                list.add(string[i].toString())
+                                if (list.indexOf("A") >= 0) {
+                                    val aa = list.indexOf("A")
+                                    list.add(aa, "10")
+                                    list.removeAt(aa + 1)
+                                }
+                                if (list.indexOf("B") >= 0) {
+                                    val bb = list.indexOf("B")
+                                    list.add(bb, "11")
+                                    list.removeAt(bb + 1)
+                                }
+                                if (list.indexOf("C") >= 0) {
+                                    val cc = list.indexOf("C")
+                                    list.add(cc, "12")
+                                    list.removeAt(cc + 1)
+                                }
+                                if (list.indexOf("D") >= 0) {
+                                    val dd = list.indexOf("D")
+                                    list.add(dd, "13")
+                                    list.removeAt(dd + 1)
+                                }
+                                if (list.indexOf("E") >= 0) {
+                                    val ee = list.indexOf("E")
+                                    list.add(ee, "14")
+                                    list.removeAt(ee + 1)
+                                }
+                                if (list.indexOf("F") >= 0) {
+                                    val ff = list.indexOf("F")
+                                    list.add(ff, "15")
+                                    list.removeAt(ff + 1)
+                                }
+                                if (list.indexOf("G") >= 0) {
+                                    val gg = list.indexOf("G")
+                                    list.add(gg, "16")
+                                    list.removeAt(gg + 1)
+                                }
+                                if (list.indexOf("H") >= 0) {
+                                    val hh = list.indexOf("H")
+                                    list.add(hh, "17")
+                                    list.removeAt(hh + 1)
+                                }
+                                if (list.indexOf("I") >= 0) {
+                                    val ii = list.indexOf("I")
+                                    list.add(ii, "18")
+                                    list.removeAt(ii + 1)
+                                }
+                                if (list.indexOf("J") >= 0) {
+                                    val jj = list.indexOf("J")
+                                    list.add(jj, "19")
+                                    list.removeAt(jj + 1)
+                                }
+                                if (list.indexOf("K") >= 0) {
+                                    val kk = list.indexOf("K")
+                                    list.add(kk, "20")
+                                    list.removeAt(kk + 1)
+                                }
+                                if (list.indexOf("L") >= 0) {
+                                    val ll = list.indexOf("L")
+                                    list.add(ll, "21")
+                                    list.removeAt(ll + 1)
+                                }
+                                if (list.indexOf("M") >= 0) {
+                                    val mm = list.indexOf("M")
+                                    list.add(mm, "22")
+                                    list.removeAt(mm + 1)
+                                }
+                                if (list.indexOf("N") >= 0) {
+                                    val nn = list.indexOf("N")
+                                    list.add(nn, "23")
+                                    list.removeAt(nn + 1)
+                                }
+                                if (list.indexOf("O") >= 0) {
+                                    val oo = list.indexOf("O")
+                                    list.add(oo, "24")
+                                    list.removeAt(oo + 1)
+                                }
+                                if (list.indexOf("P") >= 0) {
+                                    val pp = list.indexOf("P")
+                                    list.add(pp, "25")
+                                    list.removeAt(pp + 1)
+                                }
+                                if (list.indexOf("Q") >= 0) {
+                                    val qq = list.indexOf("Q")
+                                    list.add(qq, "26")
+                                    list.removeAt(qq + 1)
+                                }
+                                if (list.indexOf("R") >= 0) {
+                                    val rr = list.indexOf("R")
+                                    list.add(rr, "27")
+                                    list.removeAt(rr + 1)
+                                }
+                                if (list.indexOf("S") >= 0) {
+                                    val ss = list.indexOf("S")
+                                    list.add(ss, "28")
+                                    list.removeAt(ss + 1)
+                                }
+                                if (list.indexOf("T") >= 0) {
+                                    val tt = list.indexOf("T")
+                                    list.add(tt, "29")
+                                    list.removeAt(tt + 1)
+                                }
+                                if (list.indexOf("U") >= 0) {
+                                    val uu = list.indexOf("U")
+                                    list.add(uu, "30")
+                                    list.removeAt(uu + 1)
+                                }
+                                if (list.indexOf("V") >= 0) {
+                                    val vv = list.indexOf("V")
+                                    list.add(vv, "31")
+                                    list.removeAt(vv + 1)
+                                }
+                                if (list.indexOf("W") >= 0) {
+                                    val ww = list.indexOf("W")
+                                    list.add(ww, "32")
+                                    list.removeAt(ww + 1)
+                                }
+                                if (list.indexOf("X") >= 0) {
+                                    val xx = list.indexOf("X")
+                                    list.add(xx, "33")
+                                    list.removeAt(xx + 1)
+                                }
+                                if (list.indexOf("Y") >= 0) {
+                                    val yy = list.indexOf("Y")
+                                    list.add(yy, "34")
+                                    list.removeAt(yy + 1)
+                                }
+                                if (list.indexOf("Z") >= 0) {
+                                    val zz = list.indexOf("Z")
+                                    list.add(zz, "35")
+                                    list.removeAt(zz + 1)
+                                }
+                            }
+                            for (i in list.size - 1 downTo 0) {
+                                sum = list[i].toBigInteger() * num
+                                a += sum
+                                num *= x
+                            }
+                        }
+                        ////////////////////////////////////////////////////////////////////////
+                        var result = ""
+                        if (y.toInt() in 2..10) {
+                            while (a > 0.toBigInteger()) {
+                                val num3: String = (a % y).toString()
+                                result = num3 + result
+                                a /= y
+                            }
+                            println("Conversion result: $result")
+                            println(" ")
+                        }
+                        if (y.toInt() in 11..36) {
+                            while (a > 0.toBigInteger()) {
+                                var num2 = (a % y).toString()
+                                if (num2 == "10") { num2 = "A" }
+                                else if (num2 == "11") { num2 = "B" }
+                                else if (num2 == "12") { num2 = "C" }
+                                else if (num2 == "13") { num2 = "D" }
+                                else if (num2 == "14") { num2 = "E" }
+                                else if (num2 == "15") { num2 = "F" }
+                                else if (num2 == "16") { num2 = "G" }
+                                else if (num2 == "17") { num2 = "H" }
+                                else if (num2 == "18") { num2 = "I" }
+                                else if (num2 == "19") { num2 = "J" }
+                                else if (num2 == "20") { num2 = "K" }
+                                else if (num2 == "21") { num2 = "L" }
+                                else if (num2 == "22") { num2 = "M" }
+                                else if (num2 == "23") { num2 = "N" }
+                                else if (num2 == "24") { num2 = "O" }
+                                else if (num2 == "25") { num2 = "P" }
+                                else if (num2 == "26") { num2 = "Q" }
+                                else if (num2 == "27") { num2 = "R" }
+                                else if (num2 == "28") { num2 = "S" }
+                                else if (num2 == "29") { num2 = "T" }
+                                else if (num2 == "30") { num2 = "U" }
+                                else if (num2 == "31") { num2 = "V" }
+                                else if (num2 == "32") { num2 = "W" }
+                                else if (num2 == "33") { num2 = "X" }
+                                else if (num2 == "34") { num2 = "Y" }
+                                else if (num2 == "35") { num2 = "Z" }
+                                else (a % y).toString()
+                                result = num2 + result
+                                a /= y
+                            }
+                            println("Conversion result: $result")
+                            println(" ")
+                        }
+                    }
+                }
+                if (string == "/BACK")
+                    break
+            } while (true)
+        }
+        if (input == "/exit")
+            break
+    } while (true)
+}
+
